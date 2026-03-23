@@ -43,6 +43,17 @@ Breakdown:
 
 This expression effectively filters the alphabet to ensure that if any of the forbidden patterns are detected, the match fails immediately.
 
+### Efficiency Analysis
+
+1. **Determinism and Performance**: 
+   The **DFA** is more robust for processing large-scale data streams. Each input from the list in Prolog triggers a transition to a predefined state, ensuring a predictable response time.
+
+2. **Design Flexibility**: 
+   The **Regular Expression** `(?!.*1101|.*1122|.*1011|.*1012)[012]+` is ideal for quick validations and code readability. However, the DFA allows for a better analisis like at which point in the sequence the language rule was violated (for example, upon entering trap states `h`, `i`, or `j`).
+
+3. **Analysis Conclusion**: 
+   Given the simplicity of the four constraints, the **Regex** is the most optimal solution for rapid implementation. However the **DFA** (or an automaton) would be the only viable option to maintain the system's logic.
+
 ## Implementation
 The lexical analysis parser is implemented in Prolog. The transition logic and state definitions are contained in the `automata.pl` file.
 
@@ -78,6 +89,15 @@ true.
 ```
 
 The output will display a categorized list of **Accepted States** (e.g., `[1,1,2]`, `[2,1,2]`) and **Denied States** (e.g., `[1,1,0,1]`, `[1,0,1,1]`).
+
+### Automated Test Report
+
+| Category | Description | Status |
+| :--- | :--- | :--- |
+| **Empty String** | Evaluates the start state `s` as an accepting state. | **Passed** |
+| **Valid Sequences** | Tests strings like `[0,1,2]`, `[1,1,2]`, and `[2,1,0]` that do not trigger trap states. | **Passed** |
+| **Prohibited Sequences** | Validates that `[1,1,0,1]`, `[1,1,2,2]`, `[1,0,1,1]`, and `[1,0,1,2]` are rejected. | **Passed** |
+| **Complex Combinations** | Evaluates longer strings containing valid patterns followed by valid exits. | **Passed** |
 
 ## Analysis
 
