@@ -43,6 +43,8 @@ Breakdown:
 
 This expression effectively filters the alphabet to ensure that if any of the forbidden patterns are detected, the match fails immediately.
 
+Following the principles outlined by **Michael Fitzgerald in "Introducing Regular Expressions"**, this implementation utilizes **Zero-Width Assertions** (specifically negative lookaheads) to enforce constraints without consuming characters, allowing for a more compact and readable pattern compared to traditional concatenation-based expressions.
+
 ### Efficiency Analysis
 
 1. **Determinism and Performance**: 
@@ -108,3 +110,5 @@ The time complexity of the `parse_list` predicate is analyzed as follows:
 * **Recursive Case:** For each element in an input list of length $n$, the system performs a transition lookup. Since each lookup is **O(1)** and is performed $n$ times, the overall time complexity is **O(n)**.
 
 ## References
+
+Fitzgerald, M. (2012). Introducing regular expressions: Unraveling Regular Expressions, Step-by-Step. «O’Reilly Media, Inc.»
