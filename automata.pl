@@ -19,7 +19,7 @@ transition(c, e, 1).
     transition(c, b, 2).
 
 transition(d, f, 0).
-    transition(d, a, 1).
+    transition(d, d, 1).
 transition(d, g, 2).
 
     transition(e, c, 0).
